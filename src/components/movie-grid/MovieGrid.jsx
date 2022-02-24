@@ -120,7 +120,7 @@ const MovieSearch = (props) => {
     <div className='movie-search'>
       <Input
         type='text'
-        placehoder='Enter keyword'
+        placeholder='Enter keyword'
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
