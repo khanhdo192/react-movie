@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import "./movie-list.scss";
-import { useState } from "react";
-import tmdbApi, { category } from "../../api/tmdbApi";
-import { Swiper, SwiperSlide } from "swiper/react";
-import apiConfig from "../../api/apiConfig";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import './movie-list.scss';
+import { useState } from 'react';
+import tmdbApi, { category } from '../../api/tmdbApi';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import MovieCard from '../movie-card/MovieCard';
 
 const MovieList = (props) => {
   const [items, setItems] = useState([]);
@@ -14,7 +14,7 @@ const MovieList = (props) => {
       let response = null;
       const params = {};
 
-      if (props.type !== "similar") {
+      if (props.type !== 'similar') {
         switch (props.category) {
           case category.movie:
             response = await tmdbApi.getMoviesList(props.type, { params });
@@ -32,11 +32,11 @@ const MovieList = (props) => {
   }, []);
 
   return (
-    <div className="movie-list">
-      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={"auto"}>
+    <div className='movie-list'>
+      <Swiper grabCursor={true} spaceBetween={10} slidesPerView={'auto'}>
         {items.map((item, i) => (
           <SwiperSlide key={i}>
-            <img src={apiConfig.w500Image(item.poster_path)} alt="" />
+            <MovieCard item={item} category={props.category} />
           </SwiperSlide>
         ))}
       </Swiper>
